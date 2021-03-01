@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Devices from '../views/Devices.vue'
 import Patients from '../views/Patients.vue'
+import Settings from '../views/Settings.vue'
 
 
 Vue.use(VueRouter)
@@ -30,6 +31,11 @@ const routes = [
     path: '/patients',
     name: 'Patients',
     component: Patients
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
   }
 
 ]
