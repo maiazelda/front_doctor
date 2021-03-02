@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Ceci est ma liste de piluliers</h1>
-        <table>
+        <v-list two-line>
             <devices-list-item
                 v-for="(item, i) in devices"
                 :key="i"
@@ -9,7 +9,7 @@
             ></devices-list-item>
         
 
-        </table>
+        </v-list>
     </div>
 </template>
 

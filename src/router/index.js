@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import Devices from '../views/Devices.vue'
 import Patients from '../views/Patients.vue'
 import Settings from '../views/Settings.vue'
+import Tests from '../views/Tests.vue'
+import TestGrid from '../views/TestGrid.vue'
+import TestForm from '../views/TestForm.vue'
 
 
 Vue.use(VueRouter)
@@ -36,7 +39,23 @@ const routes = [
     path: '/settings',
     name: 'Settings',
     component: Settings
+  },
+  {
+    path: '/tests',
+    name: 'Tests',
+    component: Tests
+  },
+  {
+    path: '/testgrid',
+    name: 'TestGrid',
+    component: TestGrid
+  },
+  {
+    path: '/testform',
+    name: 'TestForm',
+    component: TestForm
   }
+
 
 ]
 
