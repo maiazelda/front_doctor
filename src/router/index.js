@@ -7,6 +7,11 @@ import Settings from '../views/Settings.vue'
 import Tests from '../views/Tests.vue'
 import TestGrid from '../views/TestGrid.vue'
 import TestForm from '../views/TestForm.vue'
+import Auth from '../views/Auth.vue'
+import LogoutCallback from '../views/oidc/LogoutCallback.vue'
+import LoginCallback from '../views/oidc/LoginCallback.vue'
+import Init from '../views/Init.vue'
+import Store from '@/store'
 
 
 Vue.use(VueRouter)
@@ -15,7 +20,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     path: '/about',
@@ -23,7 +31,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    meta: {
+      requireAuth: true
+    }
   },
   {
     path: '/devices',
@@ -54,6 +65,27 @@ const routes = [
     path: '/testform',
     name: 'TestForm',
     component: TestForm
+  },
+  {
+    path: '/init',
+    name: 'Init',
+    component: Init,
+    props: true
+  },
+  {
+    path: '/auth',
+    name: 'Auth',
+    component: Auth,
+  },
+  {
+    path: '/login',
+    name: 'LoginCallback',
+    component: LoginCallback
+  },
+  {
+    path: '/logout',
+    name: 'LogoutCallback',
+    component: LogoutCallback
   }
 
 
@@ -65,4 +97,13 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireAuth)) {
+    if (Store.getters['auth/isAuth']) next()
+    else next({ name: 'Init', params: { to } })
+  }
+  else next()
+})
+
 export default router
+
