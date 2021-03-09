@@ -3,8 +3,8 @@
     
      <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title>{{device.name}}</v-list-item-title>
-        <v-list-item-subtitle>{{device.patient}}</v-list-item-subtitle>
+        <v-list-item-title>{{item.device}}</v-list-item-title>
+        <v-list-item-subtitle>{{item.user}}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 </template>
@@ -14,7 +14,7 @@
 export default {
     name: "DevicesListItem",
     props: {
-        device: {
+        item: {
             type: Object,
             required: true
         }

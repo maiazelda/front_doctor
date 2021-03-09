@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <h1>Ceci est ma liste de piluliers</h1>
+    
+        
         <v-list two-line>
             <devices-list-item
-                v-for="(item, i) in devices"
+                v-for="(item, i) in items"
                 :key="i"
-                :device="item"
+                :item="item"
             ></devices-list-item>
         
 
         </v-list>
-    </div>
+    
 </template>
 
 <script>
@@ -21,24 +21,12 @@ export default {
     components: {
         DevicesListItem
     },
-    data: () => ({
-        devices: [
-            {
-                id: 1,
-                name: "pilulier 1",
-                patient: "maia"
-            },
-             {
-                id: 2,
-                name: "pilulier 2",
-                patient: "arthur"
-            },
-             {
-                id: 3,
-                name: "pilulier 3",
-                patient: "juliette"
-            }
-        ]
-    })
+    props: {
+        items: {
+            type: Array,
+            required: true
+        }
+    },
+    
 }
 </script>

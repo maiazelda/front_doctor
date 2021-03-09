@@ -24,7 +24,7 @@
 
 <script>
 
-const Axios = require("axios")
+import Backend from '@/services/backend'
 
 export default {
     name: 'TestForm',
@@ -45,13 +45,15 @@ export default {
             console.log("je suis appelé onclick")
             if (this.$refs.createDeviceForm.validate()){ //si on clique sur oncreate, on demande au formulaire de s'auto valider
                 console.log("je dois appeler l'api")
-                Axios.post("https://vcrko6pb51.execute-api.eu-central-1.amazonaws.com/dev/devices", this.formdata)
-                    .then(response => {
-                        console.log("voici la reponse de lapi", response.data)
-                    })
-                    .catch(error => {
-                        console.log("voici l'erreur de lapi", error)
-                    })
+                Backend.createDevice({
+                    user: this.formdata.patient,
+                    device: this.formdata.name
+
+                })
+                .then(() => {
+                    this.$router.push("/devices")
+                })
+                
             }  
             else {
                 console.log("formulaire non validé")
